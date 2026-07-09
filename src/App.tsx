@@ -11,7 +11,7 @@ export type Tab = 'home' | 'you' | 'basket' | 'browse' | 'rufus'
 
 const MOCKUP_W = 390
 const MOCKUP_H = 844
-const SCALE = 0.9
+const SCALE = 0.8
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home')
