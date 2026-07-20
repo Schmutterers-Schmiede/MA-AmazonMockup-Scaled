@@ -117,7 +117,7 @@ export default function App() {
       {/* Rate this prototype — this is testing UI, not part of the docked
           interface, so it lives in the outer full-screen container, placed
           away from the mockup which is anchored bottom-left. */}
-      <div className="fixed top-6 right-6 z-40">
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40">
         <button
           onClick={handleRateClick}
           disabled={!hasVisitedRufus}
