@@ -55,14 +55,14 @@ export default function App() {
     window.Tally.openPopup('gD17jO', {
       layout: 'modal',
       hiddenFields: {
-      pid: ctx.pid,
-      pair: ctx.pair,
-      variant: ctx.variant,
-      step: ctx.step,
-      elapsed_ms: elapsed,
-      grip_type: ctx.grip,
-      preference_step: ctx.preferenceStep, // 'skip' | 'two_way' | 'three_way'
-    },
+        pid: ctx.pid,
+        pair: ctx.pair,
+        variant: ctx.variant,
+        step: ctx.step,
+        elapsed_ms: elapsed,
+        grip_type: ctx.grip,
+        preference_step: ctx.preferenceStep, // 'skip' | 'two_way' | 'three_way'
+      },
       onSubmit: () => {
         window.location.href = nextUrl(ctx)
       },
