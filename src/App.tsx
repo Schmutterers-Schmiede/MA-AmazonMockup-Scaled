@@ -120,7 +120,18 @@ export default function App() {
       {/* Rate this prototype — this is testing UI, not part of the docked
           interface, so it lives in the outer full-screen container, placed
           away from the mockup which is anchored bottom-left. */}
-      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40">
+      <div className="fixed top-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-2">
+        <button
+          onClick={() => setShowInstructions(true)}
+          aria-label="Show instructions again"
+          className="w-11 h-11 rounded-full bg-white/90 text-gray-700 flex items-center justify-center shadow-md active:scale-95 transition-transform"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+        </button>
         <button
           onClick={handleRateClick}
           disabled={!hasVisitedRufus}
@@ -138,8 +149,8 @@ export default function App() {
           Covers the full outer screen, same as every other prototype. */}
       {showInstructions && (
         <InstructionsOverlay
-          title={INSTRUCTIONS.control_center.title}
-          instructions={INSTRUCTIONS.control_center.text}
+          title={INSTRUCTIONS.amazon_nav.title}
+          instructions={INSTRUCTIONS.amazon_nav.text}
           onStart={handleStart}
           gripImage={GRIP_IMAGES[ctx.grip]}
         />
