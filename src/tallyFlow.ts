@@ -13,20 +13,21 @@ export const PROTOTYPE_URLS: Record<string, string> = {
 
   control_center_baseline:    'https://schmutterers-schmiede.github.io/MA-iosControlCenter-Right/',
   control_center_lefthand:    'https://schmutterers-schmiede.github.io/MA-iosControlCenter-Left/',
-  control_center_onehandmode: 'https://schmutterers-schmiede.github.io/MA-iosControlCenter-OneHanded/', 
+  control_center_onehandmode: 'https://schmutterers-schmiede.github.io/MA-iosControlCenter-OneHanded/',
 
   message_inbox_baseline:    'https://schmutterers-schmiede.github.io/MA-Inbox-Right/',
   message_inbox_lefthand:    'https://schmutterers-schmiede.github.io/MA-Inbox-Left/',
+  message_inbox_onehandmode: 'https://schmutterers-schmiede.github.io/MA-Inbox-OneHanded/',
 };
 
 export const INSTRUCTIONS: Record<string, { title: string; text: string }> = {
   control_center: {
     title: "Control Center",
-    text: "Try opening the control panel and toggling one setting. When you're done, tap 'Rate this' below.",
+    text: "Try opening the control panel 3 separate times, closing it after each one. When you're done, tap 'Rate this' below.",
   },
   settings: {
     title: "Settings Menu",
-    text: "Try toggling 'Wi-Fi' at the top, then scroll down and toggle 'Developer options' near the bottom. When you're done, tap 'Rate this' below.",
+    text: "Try toggling every setting on this screen at least once. When you're done, tap 'Rate this' below.",
   },
   amazon_nav: {
     title: "App Navigation",
@@ -34,7 +35,7 @@ export const INSTRUCTIONS: Record<string, { title: string; text: string }> = {
   },
   message_inbox: {
     title: "Inbox",
-    text: "Try deleting any 3 messages by swiping them. When you're done, tap 'Rate this' below.",
+    text: "Try deleting every message by swiping them. When you're done, tap 'Rate this' below.",
   },
 };
 
@@ -50,7 +51,12 @@ export function getContext() {
   const pair = order[pairIndex];
   const variant: Variant = VARIANTS[variantIndex];
 
-  return { pid, order, step, grip, pair, variant };
+  // Every pair now has exactly 3 variants, so "last variant" is always
+  // onehandmode — the preference question is only ever a single 3-way ask.
+  const isLastVariant = variantIndex === VARIANTS.length - 1;
+  const preferenceStep: 'skip' | 'ask' = isLastVariant ? 'ask' : 'skip';
+
+  return { pid, order, step, grip, pair, variant, preferenceStep };
 }
 
 export function nextUrl(ctx: ReturnType<typeof getContext>) {
