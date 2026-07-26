@@ -6,8 +6,8 @@ import You from './pages/You'
 import Basket from './pages/Basket'
 import Browse from './pages/Browse'
 import Rufus from './pages/Rufus'
-import { getContext, nextUrl, INSTRUCTIONS } from './tallyFlow'
-import { InstructionsOverlay } from './InstructionsOverlay'
+import { getContext, nextUrl} from './tallyFlow'
+import { InstructionsOverlay } from './instructionsOverlay'
 import { GRIP_IMAGES } from './gripImages';
 
 export type Tab = 'home' | 'you' | 'basket' | 'browse' | 'rufus'
@@ -150,7 +150,7 @@ export default function App() {
               : 'bg-gray-300 text-gray-400 cursor-not-allowed'
           }`}
         >
-          Done testing — Rate this
+          Rate Now
         </button>
       </div>
 
@@ -158,8 +158,7 @@ export default function App() {
           Covers the full outer screen, same as every other prototype. */}
       {showInstructions && (
         <InstructionsOverlay
-          title={INSTRUCTIONS.amazon_nav.title}
-          instructions={INSTRUCTIONS.amazon_nav.text}
+          variant={ctx.variant}
           onStart={handleStart}
           gripImage={GRIP_IMAGES[ctx.grip]}
         />
